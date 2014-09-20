@@ -11,7 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140920202408) do
+ActiveRecord::Schema.define(version: 20140920224223) do
+
+  create_table "checkins", force: true do |t|
+    t.string   "latitude"
+    t.string   "longitude"
+    t.integer  "unidade_id"
+    t.integer  "remedio_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "remedios", force: true do |t|
+    t.string   "nome"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "unidades", force: true do |t|
+    t.string   "bairro"
+    t.string   "endereco"
+    t.string   "farmacia"
+    t.string   "telefone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

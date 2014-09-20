@@ -12,4 +12,22 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap-sprockets
 //= require_tree .
+
+// function showLocation(position) {
+//   var latitude = position.coords.latitude;
+//   var longitude = position.coords.longitude;
+//   alert("Latitude : " + latitude + " Longitude: " + longitude);
+// }
+
+// function getLocation(){
+//    if(navigator.geolocation){
+//       var options = {timeout:60000};
+//       navigator.geolocation.getCurrentPosition(showLocation, errorHandler, options);
+//    }else{
+//       alert("Sorry, browser does not support geolocation!");
+//    }
+// }
+
+// getLocation()
