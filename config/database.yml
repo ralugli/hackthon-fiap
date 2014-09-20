@@ -1,0 +1,21 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: root
+  password:
+  socket: /tmp/mysql.sock
+
+development:
+  <<: *default
+  database: hackthon_development
+
+test:
+  <<: *default
+  database: hackthon_test
+
+production:
+  <<: *default
+  database: hackthon_production
+  username: hackthon
+  password: <%= ENV['HACKTHON_DATABASE_PASSWORD'] %>
