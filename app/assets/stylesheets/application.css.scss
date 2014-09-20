@@ -60,3 +60,16 @@
 body{
   background: #f5c348;
 }
+
+#resultados_busca{
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style-type: none;
+}
+
+#resultados_busca li{
+  display: block;
+  background: #FFF;
+  padding: 5px;
+  margin-bottom: 10px;
+}

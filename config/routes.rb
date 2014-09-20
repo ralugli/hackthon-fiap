@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   root 'remedios#index'
   get 'remedios/all' => 'remedios#all', as: "remedio_list"
+  post 'remedios/search' => 'remedios#search', as: "search_remedio"
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

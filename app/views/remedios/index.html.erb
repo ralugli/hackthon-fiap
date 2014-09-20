@@ -8,6 +8,13 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="col-md-12">
+    <ul id="resultados_busca">
+    </ul>
+  </div>
+</div>
+
 <script type="text/javascript">
 
   var remedios = [];
@@ -20,4 +27,19 @@
   $(document).ready(function(){
     $('#remedio').typeahead({ source: remedios });
   })
+
+  $("#remedio").on("change", function() {
+    var valor_campo =  $(this).val();
+    var resultados_busca = $("#resultados_busca");
+
+    var jqxhr = $.post( "<%= search_remedio_path %>", { nome_remedio: valor_campo }, function( data ) {
+      resultados_busca.html("");
+      $.each( data, function( key, val ) { 
+        resultados_busca.append( "<li>"+ val.farmacia + "<br />" + val.endereco + "<br />" + val.telefone +"</li>" );
+      });
+      resultados_busca
+    });
+  });
+
+
 </script>

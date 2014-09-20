@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140920224223) do
+ActiveRecord::Schema.define(version: 20140920225018) do
 
   create_table "checkins", force: true do |t|
     t.string   "latitude"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20140920224223) do
     t.integer  "remedio_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "remedios", force: true do |t|
