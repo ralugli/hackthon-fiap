@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-md-12">
+
+    <div class="well">
+      <h4>Remédio: <%= @remedio.nome %></h4>
+      <hr />
+      <h3><%= @ubs.farmacia %></h3>
+      <b>Endereço:</b> <%= @ubs.endereco %> <br />
+      <b>Bairro:</b> <%= @ubs.bairro %> <br />
+      <b>Telefone: </b><%= @ubs.telefone %>
+    </div>
+
+    <hr />
+    <a href="/checkin/tem_remedio?unidade=<%= @ubs.id %>&remedio=<%= @remedio.id %>" class="btn btn-success btn-lg btn-block">Tem o medicamento</a>
+    <a href="/checkin/nao_tem_remedio" class="btn btn-danger btn-lg btn-block">Não tem medicamento</a>
+    <a href="/remedios" class="btn btn-default btn-lg btn-block">Voltar</a>
+  </div>
+</div>

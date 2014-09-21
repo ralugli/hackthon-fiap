@@ -22,9 +22,12 @@
         <% end %>
         <div class="form-group">
           <%= f.submit  t('.sign_in', :default => "Acessar"), class: "btn btn-primary" %>
+          <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+            <%= link_to t(".sign_up", :default => "Criar uma conta"), new_registration_path(resource_name), :class => "btn btn-default pull-right" %><br />
+          <% end -%>
         </div>
     <% end %>
   </div>
 </div>
 
-<%= render "devise/shared/links" %>
+<% render "devise/shared/links" %>

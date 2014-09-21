@@ -12,6 +12,13 @@
   <%= render 'layouts/nav' if user_signed_in? %>
 
   <div class="container">
+
+    <% if flash[:notice] %>
+      <div class="alert alert-success" role="alert">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
     <%= yield %>
   </div>
   

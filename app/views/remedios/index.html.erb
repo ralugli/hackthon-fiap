@@ -1,19 +1,52 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="form-group">
-      <input type="text" class="form-control" id="remedio" autocomplete="off" placeholder="Nome do remédio">
+
+    <div class="well">
+      <div class="form-group">
+        <input type="text" class="form-control" id="remedio" autocomplete="off" placeholder="Nome do remédio">
+      </div>
+
+    <ul id="resultados_busca">
+    </ul>
+    <div id="sem_resultado" style="display: none">
+      Ainda não sabemos onde tem essa medicação :( <br />
+      Caso você descubra em alguma UBS, por favor nos <a href="">Informe</a>.
+    </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- <div class="row">
+  <div class="col-md-12">
+   
+  </div>
+</div> -->
+
+<div class="row" id="ubs_proximas" style="display:none">
+  <div class="col-md-12">
+    <hr />
+    <h4>UBS Próximas:</h4>
+    <ul id="ubs_proximas_ul">
+    </ul>
+  </div>
+</div>
+
+<div class="row" id="patrocinados" style="display:none">
+  <div class="col-md-12">
+    <hr />
+    <div style="background: #FFF;padding: 10px">
+      <h4>Farmácia Santa Isabel</h4>
+      <p>80% de desconto em todas as medicações</p>
     </div>
   </div>
 </div>
 
 <div class="row">
   <div class="col-md-12">
-    <ul id="resultados_busca">
-    </ul>
-    <div id="sem_resultado" style="display: none">
-      Ainda não sabemos onde tem medicação :( <br />
-      Caso você descubra, por favor nos <a href="">avise</a>.
-    </div>
+    <hr />
+    <a href="/" class="btn btn-default btn-lg btn-block">Voltar</a>
   </div>
 </div>
 
@@ -37,16 +70,33 @@
     var jqxhr = $.post( "<%= search_remedio_path %>", { nome_remedio: valor_campo }, function( data ) {
       resultados_busca.html("");
       $.each( data, function( key, val ) { 
-        resultados_busca.append( "<li>"+ val.farmacia + "<br />" + val.endereco + "<br />" + val.telefone +"</li>" );
+        resultados_busca.append( "<li><b>"+ val.farmacia + "</b><br />" + val.endereco + "<br />" + val.telefone + "<br /> Última atualização: " + val.ultima_notificacao + "</li>" );
       });
       resultados_busca
 
       if(data.length == 0 && valor_campo != ""){
         $("#sem_resultado").show();
+        $("#patrocinados").show();
+        show_ubs();
       }else{
         $("#sem_resultado").hide();
+        $("#patrocinados").hide();
       }
 
     });
+
+    function show_ubs(){
+      $("#ubs_proximas").show();
+      var ubs = $("#ubs_proximas_ul");
+
+      var jqxhr_ubs = $.post( "<%= ubs_all_path %>", { latitude: "", logintude: "" }, function( data ) {
+        ubs.html("");
+        $.each( data, function( key, val ) { 
+          ubs.append( "<li><a href='<%= checkin_ubs_path %>?unidade="+ val.id +"&remedio=" + $("#remedio").val() +"'>" + val.farmacia + "</a></li>" );
+        });
+        ubs
+      });
+    }
+
   });
 </script>

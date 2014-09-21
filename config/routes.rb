@@ -2,9 +2,20 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  root 'remedios#index'
+  root "dashboard#index"
+
+  get 'remedios' =>'remedios#index'
   get 'remedios/all' => 'remedios#all', as: "remedio_list"
   post 'remedios/search' => 'remedios#search', as: "search_remedio"
+
+  post "remedios/ubs_proximas" => 'remedios#ubs_proximas', as: "ubs_all"
+
+  get 'checkin/index' => 'checkin#index', as: "checkin_ubs"
+
+  get 'checkin/tem_remedio' => 'checkin#tem_remedio'
+  get 'checkin/nao_tem_remedio' => 'checkin#nao_tem_remedio'
+
+  # get 'dashboard/index', as: "dashboard"
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
