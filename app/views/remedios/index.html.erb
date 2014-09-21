@@ -1,10 +1,8 @@
 <div class="row">
   <div class="col-md-12">
-    <form action="" method="post" role="form">
-      <div class="form-group">
-        <input type="text" class="form-control" id="remedio" autocomplete="off" placeholder="Nome do remédio">
-      </div>
-    </form>
+    <div class="form-group">
+      <input type="text" class="form-control" id="remedio" autocomplete="off" placeholder="Nome do remédio">
+    </div>
   </div>
 </div>
 
@@ -12,6 +10,10 @@
   <div class="col-md-12">
     <ul id="resultados_busca">
     </ul>
+    <div id="sem_resultado" style="display: none">
+      Ainda não sabemos onde tem medicação :( <br />
+      Caso você descubra, por favor nos <a href="">avise</a>.
+    </div>
   </div>
 </div>
 
@@ -38,8 +40,13 @@
         resultados_busca.append( "<li>"+ val.farmacia + "<br />" + val.endereco + "<br />" + val.telefone +"</li>" );
       });
       resultados_busca
+
+      if(data.length == 0 && valor_campo != ""){
+        $("#sem_resultado").show();
+      }else{
+        $("#sem_resultado").hide();
+      }
+
     });
   });
-
-
 </script>
